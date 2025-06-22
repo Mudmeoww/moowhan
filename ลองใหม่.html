@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>นับถอยหลังวันครบรอบ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Mali', cursive;
+            background: linear-gradient(135deg, #ffe0ec, #fddde6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .time-box {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 80px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: #777;
+        }
+
+        iframe {
+            margin-top: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="headline">ติ๊กต่อก ติ๊กต่อก อะไรเอ่ยยย 💖</h1>
+    <div class="countdown" id="countdown">
+        <div class="time-box">
+            <div id="days">0</div>
+            <span>วัน</span>
+        </div>
+        <div class="time-box">
+            <div id="hours">0</div>
+            <span>ชั่วโมง</span>
+        </div>
+        <div class="time-box">
+            <div id="minutes">0</div>
+            <span>นาที</span>
+        </div>
+        <div class="time-box">
+            <div id="seconds">0</div>
+            <span>วินาที</span>
+        </div>
+    </div>
+
+    <!-- YouTube เพลง -->
+    <audio autoplay loop>
+        <source src="https://docs.google.com/uc?export=download&id=1JyQVo11uOYWwglK1Lkz-e8lVkqDeD0b8" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const targetDate = new Date("2025-06-22T23:04:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const headline = document.getElementById("headline");
+            const countdown = document.getElementById("countdown");
+            const song = document.getElementById("song");
+
+            if (distance < 0) {
+                headline.textContent = "Happy Anniversary My Love💘";
+                countdown.innerHTML = "ถึงวันของเราแล้ว 🎉";
+                song.style.display = "block";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+
+</html>
